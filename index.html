@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#151714" />
+    <title>云栖影像馆 · 3D 原型</title>
+  </head>
+  <body>
+    <main class="app-shell">
+      <canvas id="gallery-canvas" aria-label="云栖影像馆三维场景"></canvas>
+      <div class="vignette" aria-hidden="true"></div>
+
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="回到展厅入口">
+          <span class="brand-mark"></span>
+          <span>云栖影像馆</span>
+        </a>
+        <p class="edition">雨意 · 移动摄影展 / Prototype 01</p>
+        <button class="minimal-button" id="reset-view" type="button">回到入口</button>
+      </header>
+
+      <section class="welcome-panel" id="welcome-panel" aria-labelledby="welcome-title">
+        <p class="eyebrow">EXHIBITION · 01</p>
+        <h1 id="welcome-title">雨，停在镜头之前</h1>
+        <p>一座面向在线展览的轻量三维空间。点击作品查看信息，拖动可环视，滚轮可前后靠近。</p>
+        <button class="primary-button" id="enter-gallery" type="button">进入展厅 <span>↗</span></button>
+      </section>
+
+      <aside class="tour-card" id="tour-card" aria-live="polite">
+        <span class="tour-dot"></span>
+        <div>
+          <p class="eyebrow">NOW SHOWING</p>
+          <p id="tour-caption">入口大厅 · 向前探索</p>
+        </div>
+      </aside>
+
+      <nav class="tools" aria-label="展厅工具">
+        <button id="toggle-tour" type="button" aria-pressed="false">导览</button>
+        <button id="toggle-quality" type="button" aria-pressed="false">性能模式</button>
+      </nav>
+
+      <section class="artwork-dialog" id="artwork-dialog" aria-modal="true" aria-hidden="true" role="dialog" aria-labelledby="artwork-title">
+        <button class="close-button" id="close-dialog" type="button" aria-label="关闭作品详情">×</button>
+        <p class="eyebrow">FEATURED WORK</p>
+        <h2 id="artwork-title">雨后的红伞</h2>
+        <p class="artwork-meta" id="artwork-meta">原创测试作品 · 2026</p>
+        <p id="artwork-description">雾气把远山推到画面背后，一把红伞让潮湿的石径有了温度。</p>
+        <button class="text-button" id="focus-artwork" type="button">聚焦观看 →</button>
+      </section>
+
+      <footer class="footer-hint">拖动环视 · 滚动靠近 · 点击作品</footer>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Serif+SC:wght@500;600;700&display=swap');
+
+:root {
+  color: #f5eee1;
+  background: #111410;
+  font-family: "Noto Serif SC", Georgia, serif;
+  font-synthesis: none;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #app, .app-shell { width: 100%; min-width: 320px; min-height: 100%; margin: 0; }
+body { overflow: hidden; }
+button { font: inherit; }
+
+.app-shell { position: relative; height: 100dvh; overflow: hidden; background: #111410; }
+#gallery-canvas { display: block; width: 100%; height: 100%; touch-action: none; cursor: grab; }
+#gallery-canvas:active { cursor: grabbing; }
+.vignette { pointer-events: none; position: absolute; inset: 0; background: radial-gradient(circle at center, transparent 46%, rgba(4, 7, 5, .38) 100%); }
+
+.topbar { position: absolute; z-index: 3; top: 0; left: 0; width: 100%; padding: 28px 36px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px; }
+.brand { color: #fbf1df; text-decoration: none; display: inline-flex; align-items: center; gap: 11px; width: max-content; font-size: 18px; letter-spacing: .1em; }
+.brand-mark { width: 16px; height: 16px; border: 1px solid #cba46e; transform: rotate(45deg); display: inline-block; }
+.edition { margin: 0; color: rgba(244, 234, 216, .75); font-family: "DM Mono", monospace; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; }
+.minimal-button { justify-self: end; background: transparent; border: 1px solid rgba(245, 235, 218, .32); border-radius: 999px; padding: 9px 15px; color: #f7f0e3; cursor: pointer; font-size: 13px; }
+.minimal-button:hover { border-color: #cba46e; background: rgba(203, 164, 110, .12); }
+
+.welcome-panel { position: absolute; z-index: 2; left: clamp(24px, 8vw, 130px); top: 50%; width: min(480px, calc(100vw - 48px)); transform: translateY(-47%); padding: 12px 0; transition: opacity .55s ease, transform .55s ease; }
+.welcome-panel.is-hidden { opacity: 0; pointer-events: none; transform: translate(-18px, -47%); }
+.eyebrow { margin: 0 0 14px; color: #d7ad73; font-family: "DM Mono", monospace; font-size: 10px; font-weight: 500; letter-spacing: .18em; }
+.welcome-panel h1 { margin: 0; max-width: 420px; font-size: clamp(40px, 5.6vw, 78px); line-height: 1.08; letter-spacing: -.07em; font-weight: 600; text-wrap: balance; }
+.welcome-panel > p:not(.eyebrow) { margin: 24px 0 0; max-width: 370px; color: rgba(244, 237, 224, .76); font-size: 15px; line-height: 1.9; }
+.primary-button { margin-top: 30px; border: 0; color: #1b1b15; background: #e8c899; padding: 14px 18px; cursor: pointer; font-size: 15px; transition: transform .25s ease, background .25s ease; }
+.primary-button span { margin-left: 18px; font-family: Arial, sans-serif; font-size: 18px; }
+.primary-button:hover { transform: translateY(-2px); background: #f7d9a9; }
+
+.tour-card { position: absolute; z-index: 2; left: 36px; bottom: 34px; display: flex; align-items: flex-start; gap: 12px; padding: 12px 16px 12px 0; }
+.tour-card p { margin: 0; }
+.tour-card .eyebrow { margin-bottom: 5px; font-size: 9px; }
+.tour-card #tour-caption { color: #f5eee1; font-size: 14px; }
+.tour-dot { display: inline-block; width: 7px; height: 7px; margin-top: 4px; border-radius: 50%; background: #dcad6c; box-shadow: 0 0 0 5px rgba(220, 173, 108, .12); }
+
+.tools { position: absolute; z-index: 2; right: 36px; bottom: 34px; display: flex; gap: 8px; }
+.tools button, .text-button { border: 1px solid rgba(245, 235, 218, .28); color: #f6eee1; background: rgba(19, 24, 20, .45); backdrop-filter: blur(8px); padding: 9px 13px; cursor: pointer; font-size: 13px; }
+.tools button[aria-pressed="true"], .tools button:hover, .text-button:hover { background: rgba(203, 164, 110, .2); border-color: #d7ad73; }
+
+.artwork-dialog { position: absolute; z-index: 5; top: 50%; right: clamp(24px, 7vw, 110px); width: min(365px, calc(100vw - 48px)); padding: 30px; transform: translateY(-45%) translateX(24px); opacity: 0; pointer-events: none; background: rgba(20, 25, 21, .92); border: 1px solid rgba(226, 197, 153, .33); box-shadow: 0 20px 70px rgba(0, 0, 0, .4); transition: opacity .3s ease, transform .3s ease; }
+.artwork-dialog.is-visible { opacity: 1; pointer-events: auto; transform: translateY(-50%) translateX(0); }
+.artwork-dialog h2 { margin: 0 0 8px; font-size: 34px; letter-spacing: -.05em; }
+.artwork-meta { margin: 0 0 20px; color: #d2b990; font-family: "DM Mono", monospace; font-size: 11px; letter-spacing: .08em; }
+.artwork-dialog > p:not(.eyebrow):not(.artwork-meta) { color: rgba(244, 237, 224, .77); line-height: 1.8; font-size: 14px; }
+.close-button { position: absolute; top: 9px; right: 12px; border: 0; background: transparent; color: #eee5d5; cursor: pointer; font-size: 29px; line-height: 1; }
+.text-button { margin-top: 6px; background: transparent; border-width: 0 0 1px; padding: 8px 0; }
+.footer-hint { position: absolute; z-index: 2; left: 50%; bottom: 17px; transform: translateX(-50%); color: rgba(245, 235, 218, .58); font-family: "DM Mono", monospace; font-size: 9px; letter-spacing: .12em; white-space: nowrap; }
+
+@media (max-width: 760px) {
+  .topbar { padding: 20px; grid-template-columns: 1fr auto; }
+  .edition { display: none; }
+  .welcome-panel { left: 24px; top: 47%; }
+  .welcome-panel h1 { font-size: 45px; }
+  .tour-card { left: 20px; bottom: 48px; }
+  .tools { right: 20px; bottom: 48px; }
+  .footer-hint { bottom: 18px; font-size: 8px; }
+  .artwork-dialog { right: 24px; top: auto; bottom: 78px; transform: translateY(24px); }
+  .artwork-dialog.is-visible { transform: translateY(0); }
+}
